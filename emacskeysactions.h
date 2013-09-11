@@ -19,33 +19,19 @@
 
 #include <utils/savedaction.h>
 
-#include <QtCore/QHash>
-#include <QtCore/QObject>
-#include <QtCore/QString>
+#include <QHash>
+#include <QObject>
+#include <QString>
 
 namespace EmacsKeys {
 namespace Internal {
 
 enum EmacsKeysSettingsCode
 {
-    ConfigUseEmacsKeys,
-    ConfigStartOfLine,
-    ConfigHlSearch,
-    ConfigTabStop,
-    ConfigSmartTab,
-    ConfigShiftWidth,
-    ConfigExpandTab,
-    ConfigAutoIndent,
-    ConfigIncSearch,
+	ConfigUseEmacsKeys,
 
-    // indent  allow backspacing over autoindent
-    // eol     allow backspacing over line breaks (join lines)
-    // start   allow backspacing over the start of insert; CTRL-W and CTRL-U
-    //         stop once at the start of insert.
-    ConfigBackspace,
-
-    // other actions
-    SettingsDialog,
+	// other actions
+	SettingsDialog,
 };
 
 class EmacsKeysSettings : public QObject
@@ -53,24 +39,24 @@ class EmacsKeysSettings : public QObject
 public:
     EmacsKeysSettings();
     ~EmacsKeysSettings();
-    void insertItem(int code, Core::Utils::SavedAction *item,
+    void insertItem(int code, Utils::SavedAction *item,
         const QString &longname = QString(),
         const QString &shortname = QString());
 
-    Core::Utils::SavedAction *item(int code);
-    Core::Utils::SavedAction *item(const QString &name);
+    Utils::SavedAction *item(int code);
+    Utils::SavedAction *item(const QString &name);
 
     void readSettings(QSettings *settings);
     void writeSettings(QSettings *settings);
 
 private:
-    QHash<int, Core::Utils::SavedAction *> m_items; 
+    QHash<int, Utils::SavedAction *> m_items;
     QHash<QString, int> m_nameToCode; 
     QHash<int, QString> m_codeToName; 
 };
 
 EmacsKeysSettings *theEmacsKeysSettings();
-Core::Utils::SavedAction *theEmacsKeysSetting(int code);
+Utils::SavedAction *theEmacsKeysSetting(int code);
 
 } // namespace Internal
 } // namespace EmacsKeys

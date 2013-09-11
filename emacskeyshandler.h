@@ -19,8 +19,8 @@
 
 #include "emacskeysactions.h"
 
-#include <QtCore/QObject>
-#include <QtGui/QTextEdit>
+#include <QObject>
+#include <QTextEdit>
 
 namespace EmacsKeys {
 namespace Internal {
@@ -36,11 +36,6 @@ public:
     QWidget *widget();
 
 public slots:
-    void setCurrentFileName(const QString &fileName);
-
-    // This executes an "ex" style command taking context
-    // information from widget;
-    void handleCommand(const QString &cmd);
 
     void installEventFilter();
 
@@ -49,20 +44,9 @@ public slots:
     void restoreWidget();
 
 signals:
-    void commandBufferChanged(const QString &msg);
-    void statusDataChanged(const QString &msg);
-    void extraInformationChanged(const QString &msg);
+		void selectionChanged(const QList<QTextEdit::ExtraSelection> &selection);
     void quitRequested(bool force);
     void quitAllRequested(bool force);
-    void selectionChanged(const QList<QTextEdit::ExtraSelection> &selection);
-    void writeFileRequested(bool *handled,
-        const QString &fileName, const QString &contents);
-    void moveToMatchingParenthesis(bool *moved, bool *forward, QTextCursor *cursor);
-    void indentRegion(int *amount, int beginLine, int endLine, QChar typedChar);
-    void completionRequested();
-    void windowCommandRequested(int key);
-    void findRequested(bool reverse);
-    void findNextRequested(bool reverse);
 
 public:
     class Private;

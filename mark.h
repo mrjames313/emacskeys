@@ -4,11 +4,11 @@
 struct Mark 
 {
   Mark(int position)
-    : valid(true), position(position)
+		: valid(true), active(true), position(position)
   {
   }
   Mark()
-    : valid(false)
+		: valid(false), active(false)
   {
   }
   bool operator ==(const Mark& mark)
@@ -20,6 +20,7 @@ struct Mark
     return !(*this == mark);
   }
   bool valid;
+	bool active;
   int position;
 };
 

@@ -70,8 +70,8 @@ QWidget* KillRing::currentYankView() const
 
 void KillRing::clipboardDataChanged()
 {
-  qDebug() << "clipboard changed " << QApplication::clipboard()->text() 
-	    << endl;
+	//qDebug() << "clipboard changed " << QApplication::clipboard()->text()
+	//    << endl;
   // TODO handle mouse selection too, optionally
   QString text(QApplication::clipboard()->text());
   add(text);

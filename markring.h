@@ -5,8 +5,6 @@
 
 #include "mark.h"
 
-
-
 class MarkRing
 {
 public:
@@ -14,7 +12,8 @@ public:
   void addMark(int position);
   Mark getPreviousMark();
   Mark getMostRecentMark();
-  
+	void toggleActive();
+
 private:
   QList<Mark> ring;
   QList<Mark>::Iterator iter;
